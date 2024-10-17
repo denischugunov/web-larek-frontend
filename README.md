@@ -133,8 +133,8 @@ yarn build
 4. **Класс `BasketUI`**  
    Класс, представляющий методы и свойства для рендеринга корзины. Включает массив продуктов и шаблон для отображения.
 
-5. **Классы `OrderDataUI`, `IOrderDataOrderUI`, `IOrderDataContactsUI`**  
-   Эти классы отвечают за представление форм для оформления заказа. `IOrderDataOrderUI` и `IOrderDataContactsUI` наследуют `OrderDataUI`, добавляя свойства с данными о заказе (например, `payment`, `email`, `phone`, `address`). Каждый из классов содержит метод `render`.
+5. **Классы `OrderDataUI`, `OrderDataOrderUI`, `OrderDataContactsUI`**  
+   Эти классы отвечают за представление форм для оформления заказа. `OrderDataOrderUI` и `OrderDataContactsUI` наследуют `OrderDataUI`, добавляя свойства с данными о заказе (например, `payment`, `email`, `phone`, `address`). Каждый из классов содержит метод `render`.
 
 6. **Класс `SuccessUI`**  
    Класс, отвечающий за рендеринг попапа при успешном оформлении заказа.
