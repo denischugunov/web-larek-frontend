@@ -16,9 +16,9 @@ const events = new EventEmitter();
 const api = new ShopApi(API_URL, CDN_URL);
 
 // Чтобы мониторить все события, для отладки
-events.onAll(({ eventName, data }) => {
-	console.log(eventName, data);
-});
+// events.onAll(({ eventName, data }) => {
+// 	console.log(eventName, data);
+// });
 
 // Все шаблоны
 const cardCatalogTemplate = ensureElement<HTMLTemplateElement>('#card-catalog');
@@ -76,7 +76,6 @@ events.on('order:submit', () => {
 
 // Отправлена форма заказа
 events.on('contacts:submit', () => {
-	console.log(appData.order);
 	api
 		.sendOrder(appData.order)
 		.then((result) => {

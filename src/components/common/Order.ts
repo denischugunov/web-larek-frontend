@@ -10,7 +10,6 @@ export class Order extends Form<IOrderForm> {
 			'.order__buttons',
 			this.container
 		);
-		console.log(paymentButtonsContainer);
 		this._buttons = ensureAllElements<HTMLButtonElement>(
 			'.button',
 			paymentButtonsContainer
