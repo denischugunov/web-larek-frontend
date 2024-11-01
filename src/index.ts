@@ -177,7 +177,6 @@ events.on('basket:changed', () => {
 		const card = new Card(cloneTemplate(cardBasketTemplate), {
 			onClick: () => appData.toggleOrderedProduct(item, false),
 		});
-		console.log(appData.order.items.find((product) => product === item));
 		const productData = appData.catalog.find((product) => product.id === item);
 		return card.render({
 			title: productData.title,
