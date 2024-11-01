@@ -12,6 +12,7 @@ export interface ICard {
 	button?: string;
 	price?: number | string;
 	category?: string;
+	basketIndex?: string | number;
 }
 
 export class Card extends Component<ICard> {
@@ -21,6 +22,7 @@ export class Card extends Component<ICard> {
 	protected _button?: HTMLButtonElement;
 	protected _price?: HTMLElement;
 	protected _category?: HTMLElement;
+	protected _basketIndex?: HTMLElement;
 
 	constructor(container: HTMLElement, actions?: ICardActions) {
 		super(container);
@@ -28,9 +30,10 @@ export class Card extends Component<ICard> {
 		this._title = ensureElement<HTMLElement>('.card__title', container);
 		this._image = container.querySelector('.card__image');
 		this._button = container.querySelector('.card__button');
-		this._description = container.querySelector('.card__description');
+		this._description = container.querySelector('.card__text');
 		this._price = container.querySelector('.card__price');
 		this._category = container.querySelector('.card__category');
+		this._basketIndex = container.querySelector('.basket__item-index')
 
 		if (actions?.onClick) {
 			if (this._button) {
@@ -85,8 +88,8 @@ export class Card extends Component<ICard> {
 			case 'кнопка':
 				type = '_button';
 		}
-
-		this._category.classList.add(`card__category${type}`);
+		this._category.className = '';
+		this._category.classList.add('card__category', `card__category${type}`);
 	}
 
 	set price(value: string) {
@@ -95,6 +98,10 @@ export class Card extends Component<ICard> {
 		} else {
 			this.setText(this._price, `${value} синапсов`);
 		}
+	}
+
+	set basketIndex(value: string | number) {
+		this.setText(this._basketIndex, String(value))
 	}
 
 	set button(value: string) {

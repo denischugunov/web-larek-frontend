@@ -79,11 +79,12 @@ events.on('contacts:submit', () => {
 	api
 		.sendOrder(appData.order)
 		.then((result) => {
+			// так как данные успешно отправлены, то удаляем данные корзины
+			appData.clearBasket();
+			// открываем окно с оповещением об удачном заказе
 			const success = new Success(cloneTemplate(successTemplate), {
 				onClick: () => {
 					modal.close();
-					appData.clearBasket();
-					events.emit('auction:changed');
 				},
 			});
 
@@ -176,10 +177,12 @@ events.on('basket:changed', () => {
 		const card = new Card(cloneTemplate(cardBasketTemplate), {
 			onClick: () => appData.toggleOrderedProduct(item, false),
 		});
+		console.log(appData.order.items.find((product) => product === item));
 		const productData = appData.catalog.find((product) => product.id === item);
 		return card.render({
 			title: productData.title,
 			price: productData.price,
+			basketIndex: appData.order.items.indexOf(productData.id) + 1,
 		});
 	});
 	basket.total = appData.getTotal();
@@ -210,7 +213,6 @@ events.on('preview:changed', (item: IProduct) => {
 	});
 
 	card.button = buttonText;
-
 	modal.render({
 		content: card.render({
 			title: item.title,

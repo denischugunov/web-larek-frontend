@@ -50,6 +50,6 @@ export class Basket extends Component<IBasketView> {
 	}
 
 	set total(total: number) {
-		this.setText(this._total, formatNumber(total));
+		this.setText(this._total, `${formatNumber(total)} синапсов`);
 	}
 }
